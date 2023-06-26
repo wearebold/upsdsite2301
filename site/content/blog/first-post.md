@@ -11,6 +11,15 @@ Welcome to my first blog post using [content v2 module](https://content.nuxtjs.o
 
 > Hey there! 👋🏾  This is my first blog post learning nuxt content.
 
+::DetailsSummary
+#summary 
+Title
+
+#details
+This will be rendered inside the `description` slot. _It's important_ to see how this **works**.
+[More information can be found here](#)
+::
+
 I'm currently building it using the following:
 
 - Nuxt.js

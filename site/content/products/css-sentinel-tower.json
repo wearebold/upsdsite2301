@@ -1,9 +1,9 @@
 {
     "title": "CSS Sentinel Tower",
     "slug": "css-sentinel-tower",
-    "category": "CPS",
+    "category": ["CPS"],        
     "description": "Central Power Supply (CPS) version of the Sentinel Tower series designed to protect emergency, security and safety applications such as emergency lighting, smoke detectors, fire alarms, and sprinklers. Complies fully with EN 50171.",
-      "powerRange": {
+    "powerRange": {
       "from": 3,
       "to": 5,
       "unit": "kVA"

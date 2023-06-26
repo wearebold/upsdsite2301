@@ -2,5 +2,10 @@
     "title": "Sentinel Rack",
     "slug": "sentinel-rack",
     "description": "The writing experience for Nuxt 3",
-    "category": "UPS"
+    "category": ["UPS"],
+    "powerRange": {
+      "from": 3,
+      "to": 5,
+      "unit": "kVA"
+    }
   }

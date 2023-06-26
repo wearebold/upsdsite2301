@@ -12,11 +12,21 @@
         <nav class="site-nav">
           <ul class="links inline-flex gap-6">
             <li class="link">
-              <NuxtLink to="/blog">Blog</NuxtLink>
+              <NuxtLink to="/about">About</NuxtLink>
+            </li>
+            <li class="link">
+              <NuxtLink to="/services">Services</NuxtLink>
             </li>
             <li class="link">
               <NuxtLink to="/products">Products</NuxtLink>
             </li>
+            <li class="link">
+              <NuxtLink to="/customised-solutions">Customised Solutions</NuxtLink>
+            </li>            
+            <li class="link">
+              <NuxtLink to="/blog">Case Studies</NuxtLink>
+            </li>
+
           </ul>
         </nav>
       </div>

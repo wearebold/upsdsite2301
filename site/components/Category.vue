@@ -36,9 +36,10 @@ const toggleExpand = () => {
 const { data } = await useAsyncData("category", () => queryContent("products").only(["category"]).find());
 
 // generate array without duplicates from flattened array
-// const articleTags = [...new Set(flatten(data, "category"))];
+const articleTags = [...new Set(flatten(data.value, "category"))];
 
-// console.log({ articleTags });
+console.log({ articleTags });
+
 </script>
 <template>
   <div class="tag-list" :class="{ active: expanded }">
@@ -49,9 +50,9 @@ const { data } = await useAsyncData("category", () => queryContent("products").o
     </button>
     <ul class="article-tags" :class="{ expanded: expanded }">
       <!-- list out tags with links -->
-      <!-- <li v-for="(tag, n) in articleTags" :key="n" class="tag">
+      <li v-for="(tag, n) in articleTags" :key="n" class="tag">
         <NuxtLink :to="`/products/category/${tag}`" class="font-semibold"> {{ tag }} </NuxtLink>
-      </li> -->
+      </li>
     </ul>
   </div>
 </template>

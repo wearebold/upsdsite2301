@@ -1,9 +1,9 @@
 <!-- ./app.vue -->
 <script setup>
 useHead({
-  title: "Nuxt 3 + Content v2 Starter",
+  title: "UPS Direct",
   meta: [
-    { name: 'description', content: 'Nuxt 3 + Content v2 Starter built by Miracleio' }
+    { name: 'description', content: '' }
   ],
 })
 </script>

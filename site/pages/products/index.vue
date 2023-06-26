@@ -27,7 +27,7 @@ useHead({
       <ContentList
         path="/product"
         :query="{
-          only: ['title', 'description', 'category', '_path'],
+          only: ['title', 'description', 'category', '_path', 'highlights', 'powerRange'],
           $sensitivity: 'base',
         }"
       >
@@ -41,10 +41,11 @@ useHead({
                   <div class="img-cont w-32 shrink-0">
                   </div>
                   <header>
-                    <h1 class="text-2xl font-semibold">{{ article.title }}</h1>
+                    <h2 class="text-2xl font-semibold">{{ article.title }}</h2>
+                    <p>{{ article.powerRange.from }} – {{ article.powerRange.to }} {{ article.powerRange.unit }}</p>
                     <p>{{ article.description }}</p>
                     <ul class="article-tags">
-                      <li class="tag !py-0.5">{{ article.category }}</li>
+                      <li class="tag !py-0.5" v-for="(tag, n) in article.category" :key="n">{{ tag }}</li>
                     </ul>
                   </header>
                 </div>

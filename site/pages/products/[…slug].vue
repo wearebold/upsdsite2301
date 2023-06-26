@@ -39,8 +39,12 @@ useHead({
       <h1 class="heading">{{ data.article.title }}</h1>
       <p class="supporting">{{ data.article.description }}</p>
 
-        <ul class="article-tags">
-            <li class="tag">{{ data.article.category }}</li>
+      <ul class="article-tags">
+        <li class="tag !py-0.5" v-for="(tag, n) in data.article.category" :key="n">{{ tag }}</li>
+    </ul>
+        <h2>Key Features:</h2>
+        <ul class="list-disc">            
+            <li class="!py-0.5" v-for="(tag, n) in data.article.highlights" :key="n">{{ tag }}</li>
         </ul>
     </header>
     <hr />    

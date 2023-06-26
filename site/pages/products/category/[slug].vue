@@ -29,7 +29,8 @@ useHead({
       </div>
     </header>
     <section class="page-section">
-      <Tags />
+      
+     <Category />
       <!-- Render list of all articles in ./content/blog using `path` -->
       <!-- Provide only defined fieldsin the `:query` prop -->
       <ContentList
@@ -57,8 +58,8 @@ useHead({
                     <h1 class="text-2xl font-semibold">{{ article.title }}</h1>
                     <p>{{ article.description }}</p>
                     <ul class="article-tags">
-                      <li class="tag">
-                        <NuxtLink :to="`/products/category/${article.category}`" class="underline"> {{ article.category }} </NuxtLink>
+                      <li class="tag" v-for="(tag, n) in article.category" :key="n">
+                        <NuxtLink :to="`/products/category/${tag}`" class="underline"> {{ tag }} </NuxtLink>
                       </li>
                     </ul>
                   </header>
