@@ -14,6 +14,7 @@
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18",
+    "@heroicons/vue": "^2.0.18",
     "nuxt": "^3.6.0",
     "typescript": "latest"
   }

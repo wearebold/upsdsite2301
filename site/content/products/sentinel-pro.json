@@ -1,0 +1,129 @@
+{
+"title": "Sentinel Pro",
+"slug": "sentinel-pro",
+"category": "UPS",
+"subCategory": "On Line UPS",
+"description": "Manufactured using the latest inverter technologies, the Sentinel Pro is designed to protect critical loads such as servers, data processing IT systems, and telecoms networks.",
+  "powerRange": {
+  "from": 700,
+  "to": 3000,
+  "unit": "VA"
+},
+  "singlePhase": "1:1",
+  "highlights": [
+    "Simple plug and play installation",
+    "Add additional battery packs for extended runtimes",
+    "Compact design is ideal for Edge application",
+    "Reduce power consumption with ECO and Smart Active modes",
+    "Cold Start function enables start-up without mains supply",
+    "Intuitive LCD display panel shows UPS status, load, and battery level",
+    "Automatically adjusting fan speed keeps noise below 40dBA",
+    "5-year warranty provides additional peace of mind"
+  ],
+  "models": [
+    {
+      "model": "SEP 700 A3",
+      "input": {
+        "ratedPower": "700 VA",
+        "voltage": "220 / 230 / 240 V",
+        "voltageTolerance": "230 V ±20%",
+        "frequency": "50 / 60 Hz",
+        "frequencyTolerance": "50 Hz ±5% / 60 Hz ±5%",
+        "powerFactor": ">0.99",
+        "currentDistortion": "≤7%"
+      },
+      "byPass": {
+        "voltageTolerance": "180 / 264 V",
+        "frequencyTolerance": "Frequency selected (from ±1.5 Hz to ±5 Hz configurable)"
+      },
+      "outputAndInverterOutput": {
+        "ratedPower": "700 VA",
+        "activePower": "630 W",
+        "numberPhases": 1,
+        "crestFactor": "3 : 1",
+        "waveform": "Sinusoidal",
+        "frequency": "Selectable: 50 Hz or 60 Hz or self-learning",
+        "voltageDistortionWithNonLinearLoad": "<4%",
+        "voltageDistortionWithLinearLoad": "<2%"
+      },
+      "overloadTimes": {
+        "load150Percent": "1 sec.",
+        "load125Percent": "5 sec."
+      },
+      "batteries": {
+        "type": "VRLA AGM maintenance-free lead based; Supercaps",
+        "typicalRechargeTime": "2-4 h"
+      },
+      "environmental": {
+        "color": "Black",
+        "communication": "USB / DB9 with RS232 and contacts / Slot for communications interface",
+        "safetyCompliance": "Safety IEC EN 62040-1",
+        "emcCompliance": "EMC 2014/30/EU electromagnetic compatibility; EMC IEC EN 62040-2",
+        "accessoriesProvided": "Power cable, IEC-IEC cable, USB cable, safety manual, quick start guide",
+        "surgeCapability": "300 J",
+        "marks": "CE, GS/NEMKO",
+        "lineInteractiveSmartActiveEfficiency": "98%",
+        "noiseAt1m": "<40 [bBA] (ECO Mode)",
+        "operatingTemperature": "0 °C - +40 °C",
+        "relativeHumidity": "5-95% non-condensing",
+        "standards": "European directives: LV 2014/35/EU low voltage; Directive and Standards: RoHS compliant -- Classification in accordance with IEC 62040-3 VFI - SS - 111; UL 1778:2014 and CSA C22.2 No. 107.3-14"
+      },
+      "data": {
+        "weight": "10.9 kg",
+        "dimensions": "235x158x422 mm"
+      }
+    },
+    {
+      "model": "SEP 1000 A3",
+      "input": {
+        "ratedPower": "1000 VA",
+        "voltage": "220 / 230 / 240 V",
+        "voltageTolerance": "230 V ±20%",
+        "frequency": "50 / 60 Hz",
+        "frequencyTolerance": "50 Hz ±5% / 60 Hz ±5%",
+        "powerFactor": ">0.99",
+        "currentDistortion": "≤7%"
+      },
+      "byPass": {
+        "voltageTolerance": "180 / 264 V",
+        "frequencyTolerance": "Frequency selected (from ±1.5 Hz to ±5 Hz configurable)"
+      },
+      "outputAndInverterOutput": {
+        "ratedPower": "1000 VA",
+        "activePower": "900 W",
+        "numberPhases": 1,
+        "crestFactor": "3 : 1",
+        "waveform": "Sinusoidal",
+        "frequency": "Selectable: 50 Hz or 60 Hz or self-learning",
+        "voltageDistortionWithNonLinearLoad": "<4%",
+        "voltageDistortionWithLinearLoad": "<2%"
+      },
+      "overloadTimes": {
+        "load150Percent": "1 sec.",
+        "load125Percent": "5 sec."
+      },
+      "batteries": {
+        "type": "VRLA AGM maintenance-free lead based; Supercaps",
+        "typicalRechargeTime": "2-4 h"
+      },
+      "environmental": {
+        "color": "Black",
+        "communication": "USB / DB9 with RS232 and contacts / Slot for communications interface",
+        "safetyCompliance": "Safety IEC EN 62040-1",
+        "emcCompliance": "EMC 2014/30/EU electromagnetic compatibility; EMC IEC EN 62040-2",
+        "accessoriesProvided": "Power cable, IEC-IEC cable, USB cable, safety manual, quick start guide",
+        "surgeCapability": "300 J",
+        "marks": "CE, GS/NEMKO",
+        "lineInteractiveSmartActiveEfficiency": "98%",
+        "noiseAt1m": "<40 [bBA] (ECO Mode)",
+        "operatingTemperature": "0 °C - +40 °C",
+        "relativeHumidity": "5-95% non-condensing",
+        "standards": "European directives: LV 2014/35/EU low voltage; Directive and Standards: RoHS compliant -- Classification in accordance with IEC 62040-3 VFI - SS - 111; UL 1778:2014 and CSA C22.2 No. 107.3-14"
+      },
+      "data": {
+        "weight": "13.3 kg",
+        "dimensions": "235x158x422 mm"
+      }
+    }
+  ]
+}

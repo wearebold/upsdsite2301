@@ -1,0 +1,69 @@
+{
+    "title": "CSS Sentinel Tower",
+    "slug": "css-sentinel-tower",
+    "category": "CPS",
+    "description": "Central Power Supply (CPS) version of the Sentinel Tower series designed to protect emergency, security and safety applications such as emergency lighting, smoke detectors, fire alarms, and sprinklers. Complies fully with EN 50171.",
+      "powerRange": {
+      "from": 3,
+      "to": 5,
+      "unit": "kVA"
+    },
+      "singlePhase": "1:1",
+      "highlights": [
+        "Central Power Supply compliant with EN 50171 standards",
+        "Designed for use in emergency or safety-related applications",
+        "Supports continuous overloads of up to 120%",
+        "Long battery autonomy and fast recharge times (< 12 hours)",
+        "Dual input as standard"
+      ],
+      "models": [
+        {
+          "model": "CSS CAM 3",
+          "input": {
+            "voltage": "220 / 230 / 240 V single-phase + N",
+            "voltageTolerance": "230 V ±20% at full load (for wider tolerances additional conditions apply)",
+            "frequencyTolerance": "40 - 72 Hz",
+            "powerFactor": "≥0.99"
+          },
+          "byPass": {
+            "ratedVoltage": "220 / 230 / 240 V single-phase + N",
+            "voltageTolerance": "180 - 264 V (selectable)",
+            "ratedFrequency": "50 / 60 Hz",
+            "frequencyTolerance": "±5% (selectable)",
+            "numberPhases": "1 + N"
+          },
+          "outputAndInverterOutput": {
+            "ratedPower": "3000 VA",
+            "activePower": "3000 W",
+            "powerAccordingWithEN50171": "2500 VA / W",
+            "outputVoltage": "220 / 230 / 240 V single-phase + N",
+            "crestFactor": "3 : 1",
+            "waveform": "Sinusoidal",
+            "frequency": "50 / 60 Hz (selectable)",
+            "voltageDistortionWithNonLinearLoad": "≤3%",
+            "voltageDistortionWithLinearLoad": "≤1%"
+          },
+          "batteries": {
+            "type": "VRLA - 10 YEARS expected lifespan",
+            "builtInBatteries": "No",
+            "maximumRechargeCurrent": "6 A"
+          },
+          "environmental": {
+            "color": "Black RAL 9005",
+            "communication": "LCD display / slot for communication interface / USB / REPO / 1 programmable input / 4 output relays",
+            "accessoriesProvided": "USB cable",
+            "surgeCapability": "1 VDR x 300 J",
+            "protections": "Overcurrent - short circuit - overvoltage - undervoltage - temperature - excessive low battery",
+            "noiseAt1m": "<48 dBA",
+            "operatingTemperature": "0 °C - +40 °C",
+            "relativeHumidity": "5-95% non-condensing",
+            "outputSockets": "Terminal block + 2 IEC 320 C13",
+            "standards": "EN50171 - European directives: LV 2014/35/EU low voltage; EMC 2014/30/EU electromagnetic compatibility -- Directive and Standards: Safety IEC EN 62040-1; EMC IEC EN 62040-2; RoHS compliant -- Classification in accordance with IEC 62040-3 VFI - SS - 111"
+          },
+          "data": {
+            "weight": "24 kg",
+            "dimensions": "500x250x698 mm"
+          }
+        }
+      ]
+    }
