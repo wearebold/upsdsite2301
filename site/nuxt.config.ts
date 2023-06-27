@@ -7,7 +7,10 @@ export default defineNuxtConfig({
       crawlLinks: true
     }     
  }, 
-  modules: ['@nuxt/content', '@nuxtjs/tailwindcss'],
+  modules: ['@nuxt/image','@nuxt/content','@nuxtjs/tailwindcss'],
+  image: {
+    provider: 'netlify'
+  },
   content: {
     // https://content.nuxtjs.org/api/configuration
     highlight: {

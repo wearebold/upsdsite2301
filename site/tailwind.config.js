@@ -25,6 +25,9 @@
             'sans': ['Satoshi', ...defaultTheme.fontFamily.sans],
           },         
          extend: {
+            screens: {
+                '3xl': '1920px',
+            },
             fontSize: {
                 'hero': 'clamp(2.03rem, calc(1.41rem + 3.11vw), 3.82rem)', // 6
                 'h1': 'clamp(1.80rem, calc(1.37rem + 2.17vw), 3.05rem)', // 5
@@ -38,9 +41,16 @@
                 'xxs': 'clamp(0.64rem, calc(0.72rem + -0.11vw), 0.70rem)' // -3
             },
              colors: {
-                 primary: defaultTheme.colors.green,
-                 'orange-500': "rgba(246, 111, 37, 0.8)",
+                 'b-gray-100': 'rgb(233, 233, 233)',
+                 'b-blue-500': 'rgb(12, 83, 254)',
+                 'b-red-500': 'rgb(255, 51, 51)',
+                 'b-yellow-500': 'rgb(255, 210, 51)',
+                 'b-green-500': 'rgb(103, 184, 0)',
+                 'b-bronze-500': 'rgb(216, 132, 92)',
              },
+             aspectRatio: {
+                '2/1': '2 / 1',
+            },
              maxWidth: {
                  '120': '7.5rem',
                  '250': '15.625rem',

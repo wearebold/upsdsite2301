@@ -1,14 +1,20 @@
 {
-"title": "Sentinel Pro",
-"slug": "sentinel-pro",
-"category": ["UPS"],        
-"subCategory": "On Line UPS",
-"description": "Manufactured using the latest inverter technologies, the Sentinel Pro is designed to protect critical loads such as servers, data processing IT systems, and telecoms networks.",
+  "title": "Sentinel Pro",
+  "slug": "sentinel-pro",
+  "category": ["UPS"],
+  "subCategory": "On Line UPS",
+  "description": "Manufactured using the latest inverter technologies, the Sentinel Pro is designed to protect critical loads such as servers, data processing IT systems, and telecoms networks.",
   "powerRange": {
-  "from": 700,
-  "to": 3000,
-  "unit": "VA"
-},
+    "from": 700,
+    "to": 3000,
+    "unit": "VA"
+  },
+  "brochure": "",
+  "userManual": "",
+  "images": [
+    "UPS_SEP_700_3000.jpg",
+    "UPS_SEP_display.jpg"
+  ],
   "singlePhase": "1:1",
   "highlights": [
     "Simple plug and play installation",

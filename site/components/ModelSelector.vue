@@ -1,29 +1,33 @@
 <template>
     <div>
-      <select v-model="selectedModel" @change="onModelChange">
+
+      <label for="model-selector">Technical specifications of the model:</label>      
+      <select v-model="selectedModel" @change="onModelChange" id="model-selector">
         <option v-for="model in models" :key="model.model" :value="model.model">
           {{ model.model }}
         </option>
       </select>
   
-      <table v-if="selectedModelData" class="data-table">
+      <table v-if="selectedModelData" class="data-table" aria-live="polite" aria-atomic="true">
         <tr>
-            <th>Name</th>
+          <th>Name</th>
           <th>Property</th>
           <th>Value</th>
         </tr>
         <template v-for="(value, key) in selectedModelData">
-          <tr v-if="typeof value === 'object'">
-            <td :rowspan="Object.keys(value).length + 1" class="group-title">{{ convertToSentenceCase(key) }}</td>
-          </tr>
-          <tr v-if="typeof value === 'object'" v-for="(subValue, subKey) in value" :key="subKey">
-            <td>{{ convertToSentenceCase(subKey) }}</td>
-            <td>{{ subValue }}</td>
-          </tr>
-          <tr v-else :key="key">
-            <td>{{ convertToSentenceCase(key) }}</td>
-            <td>{{ value }}</td>
-          </tr>
+          <template v-if="key !== 'model' && key !== 'value'">
+            <tr v-if="typeof value === 'object'">
+              <td :rowspan="Object.keys(value).length + 1" class="group-title">{{ convertToSentenceCase(key) }}</td>
+            </tr>
+            <tr v-if="typeof value === 'object'" v-for="(subValue, subKey) in value" :key="subKey">
+              <td>{{ convertToSentenceCase(subKey) }}</td>
+              <td>{{ subValue }}</td>
+            </tr>
+            <tr v-else>
+              <td>{{ convertToSentenceCase(key) }}</td>
+              <td>{{ value }}</td>
+            </tr>
+          </template>
         </template>
       </table>
     </div>

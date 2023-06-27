@@ -25,34 +25,59 @@ useHead({
   title: data.value.article.title,
   meta: [
     { name: "description", content: data.value.article.description },
-    // {
-    //   hid: "og:image",
-    //   property: "og:image",
-    //   content: `https://site.com/${data.value.article.img}`,
-    // },
+    {
+      hid: "og:image",
+      property: "og:image",
+      content: `https://site.com/${data.value.article.images[0]}`,
+    },
   ],
 });
 </script>
 <template>
   <main id="main" class="article-main">
-    <header v-if="data.article" class="article-header">
-      <h1 class="heading">{{ data.article.title }}</h1>
-      <p class="supporting">{{ data.article.description }}</p>
+    <article>
+      <header v-if="data.article" class="article-header">    
+        <h1 class="heading">{{ data.article.title }}</h1>
+        <p class="supporting">{{ data.article.description }}</p>
 
-      <ul class="article-tags">
-        <li class="tag !py-0.5" v-for="(tag, n) in data.article.category" :key="n">{{ tag }}</li>
-    </ul>
+        <ul class="article-tags">
+          <li class="tag !py-0.5" v-for="(tag, n) in data.article.category" :key="n">{{ tag }}</li>
+        </ul>  
+      </header>
+  
+      <section aria-label="Gallery">
+        <div class="relative w-full flex items-center gap-6 snap-x snap-proximity overflow-x-auto pb-14">
+          <div class="snap-center shrink-0 max-w-md mx-auto" v-for="(img, n) in data.article.images" :key="n">
+            <nuxt-img :src="`/img/products/${img}`" sizes="sm:100vw md:50vw lg:400px" :alt="data.article.title" class="" />
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Key Features">
         <h2>Key Features:</h2>
         <ul class="list-disc">            
             <li class="!py-0.5" v-for="(tag, n) in data.article.highlights" :key="n">{{ tag }}</li>
         </ul>
-    </header>
-    <hr />    
+      </section>
 
-    <ModelSelector :models="data.article.models"></ModelSelector>
+      <section aria-label="Characteristics">
+        <h2>Characteristics</h2>
 
-    <!-- PrevNext Component -->
-    <PrevNext :prev="prev" :next="next" />
+      </section>
+
+      <section aria-label="Technical Specifications">
+      <h2>Technical Specifications</h2>
+      <ModelSelector :models="data.article.models"></ModelSelector>
+      </section>
+
+      <section aria-label="Downloads">
+
+      </section>
+
+      <!-- PrevNext Component -->
+      <PrevNext :prev="prev" :next="next" />
+
+    </article>
   </main>
 </template>
 
