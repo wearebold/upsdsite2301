@@ -92,6 +92,11 @@ h6 {
   @apply font-header;
 }
 
+
+img {
+  width: 100%;
+}
+
 main {
   overflow: hidden;
 }
@@ -226,4 +231,20 @@ main {
 
 .article-item>*>.wrapper {
   @apply flex items-start gap-4;
+}
+
+/* BUTTONS */
+
+
+.c-btn--primary {
+  background-color: black;    
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+.c-btn--primary:hover,
+.c-btn--primary:focus {
+  @apply bg-b-blue-500;
 }
