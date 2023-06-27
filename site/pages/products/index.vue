@@ -27,7 +27,7 @@ useHead({
       <ContentList
         path="/product"
         :query="{
-          only: ['title', 'description', 'category', '_path', 'highlights', 'powerRange'],
+          only: ['title', 'description', 'category', '_path', 'highlights', 'powerRange', 'images'],
           $sensitivity: 'base',
         }"
       >
@@ -38,9 +38,11 @@ useHead({
             <li v-for="article in list" :key="article._path" class="article-item">
               <NuxtLink :to="article._path">
                 <div class="wrapper">
-                  <div class="img-cont w-32 shrink-0">
+                  <div class="img-cont h-72 mb-12 shrink-0">
+                    <nuxt-img :src="`/img/products/${article.images[0]}`" sizes="sm:100vw md:50vw lg:400px" :alt="article.title" class="" />
                   </div>
                   <header>
+                    
                     <h2 class="text-2xl font-semibold">{{ article.title }}</h2>
                     <p>{{ article.powerRange.from }} – {{ article.powerRange.to }} {{ article.powerRange.unit }}</p>
                     <p>{{ article.description }}</p>

@@ -21,7 +21,7 @@
      // },
      theme: {
         fontFamily: {
-            'header': ['Satoshi', ...defaultTheme.fontFamily.sans],
+            'header': ['manrope', ...defaultTheme.fontFamily.sans],
             'sans': ['Satoshi', ...defaultTheme.fontFamily.sans],
           },         
          extend: {

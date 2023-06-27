@@ -37,35 +37,35 @@ useHead({
   <main id="main" class="article-main">
     <article>
       <header v-if="data.article" class="article-header">    
-        <h1 class="heading">{{ data.article.title }}</h1>
-        <p class="supporting">{{ data.article.description }}</p>
-
+        <h1 class="heading">{{ data.article.title }}</h1>        
         <ul class="article-tags">
           <li class="tag !py-0.5" v-for="(tag, n) in data.article.category" :key="n">{{ tag }}</li>
         </ul>  
       </header>
   
-      <section aria-label="Gallery">
-        <div class="relative w-full flex items-center gap-6 snap-x snap-proximity overflow-x-auto pb-14">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <section class="prose" aria-label="Description">
+          <p class="supporting">{{ data.article.description }}</p>
+        <h2>Key Features:</h2>
+          <ul class="list-disc">            
+              <li class="!py-0.5" v-for="(tag, n) in data.article.highlights" :key="n">{{ tag }}</li>
+          </ul>
+        </section>      
+        <section aria-label="Gallery">
+        <div class="relative w-full flex items-center gap-6 snap-x snap-mandatory overflow-x-auto pb-14 max-w-md overflow-hidden">
           <div class="snap-center shrink-0 max-w-md mx-auto" v-for="(img, n) in data.article.images" :key="n">
             <nuxt-img :src="`/img/products/${img}`" sizes="sm:100vw md:50vw lg:400px" :alt="data.article.title" class="" />
           </div>
         </div>
       </section>
+      </div>      
 
-      <section aria-label="Key Features">
-        <h2>Key Features:</h2>
-        <ul class="list-disc">            
-            <li class="!py-0.5" v-for="(tag, n) in data.article.highlights" :key="n">{{ tag }}</li>
-        </ul>
-      </section>
-
-      <section aria-label="Characteristics">
+      <section class="prose" aria-label="Characteristics">
         <h2>Characteristics</h2>
-
+        <p>text here</p>
       </section>
 
-      <section aria-label="Technical Specifications">
+      <section class="prose" aria-label="Technical Specifications">
       <h2>Technical Specifications</h2>
       <ModelSelector :models="data.article.models"></ModelSelector>
       </section>

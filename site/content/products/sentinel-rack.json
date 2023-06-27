@@ -3,6 +3,12 @@
     "slug": "sentinel-rack",
     "description": "The writing experience for Nuxt 3",
     "category": ["UPS"],
+    "brochure": "",
+    "userManual": "",
+    "images": [
+      "UPS_SEP_700_3000.jpg",
+      "UPS_SEP_display.jpg"
+    ],
     "powerRange": {
       "from": 3,
       "to": 5,
