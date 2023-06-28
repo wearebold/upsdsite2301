@@ -42,7 +42,9 @@ useHead({
       <header
         class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
-        <div class="hidden md:block md:col-span-2 bg-white p-4"></div>
+        <div class="hidden md:block md:col-span-2 bg-white p-4">
+       
+        </div>
         <div
           class="md:col-span-10 bg-b-blue-500 text-white"
           style="padding: var(--space-xs)"
@@ -56,7 +58,20 @@ useHead({
       <section
         class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
-        <div class="hidden md:block md:col-span-2 bg-white"></div>
+        <div class="hidden md:block md:col-span-2 bg-white p-4">
+          <section aria-label="Downloads" class="hidden lg:block">
+            <h2 class="text-h5 font-semibold mb-4">Downloads</h2>
+            <NuxtLink
+                v-if="data.article.userManual"
+                :to="`/img/products/PDF/${data.article.userManual}`"
+                target="_blank"
+                download
+                class="c-btn c-btn--primary px-6 py-4 mt-auto | w-fit self-end inline-flex justify-content-between gap-4 no-underline"
+                :aria-label="`View ${data.article.title}`"
+                >User Mannual <span aria-hidden="true">↓</span></NuxtLink>
+          </section>
+
+        </div>
         <div class="md:col-span-10 bg-white" style="padding: var(--space-xs)">
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
             <section class="prose" aria-label="Description">
@@ -102,7 +117,16 @@ useHead({
             <ModelSelector :models="data.article.models"></ModelSelector>
           </section>
 
-          <section aria-label="Downloads"></section>
+          <section aria-label="Downloads">
+            <NuxtLink
+                v-if="data.article.userManual"
+                :to="`/img/products/PDF/${data.article.userManual}`"
+                target="_blank"
+                download
+                class="c-btn c-btn--primary px-6 py-4 mt-auto | w-fit self-end inline-flex justify-content-between gap-4 no-underline"
+                :aria-label="`View ${data.article.title}`"
+                >User Mannual <span aria-hidden="true">↓</span></NuxtLink>
+          </section>
 
           <!-- PrevNext Component -->
           <PrevNext :prev="prev" :next="next" />
