@@ -10,8 +10,9 @@
       "UPS_SER_3000ER.jpg"
     ],
     "powerRange": {
-      "from": 3,
-      "to": 5,
+      "from": 1.5,
+      "to": 3,
       "unit": "kVA"
-    }
+    },
+    "singlePhase": "1:1"
   }

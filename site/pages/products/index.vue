@@ -1,7 +1,7 @@
 <!-- ./pages/products/index.vue -->
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 
 // Meta data
 definePageMeta({
@@ -9,6 +9,7 @@ definePageMeta({
 });
 
 // Filter state
+const selectedMinPower = ref(0);
 const selectedMaxPower = ref(0);
 const selectedCategories = ref([]);
 const selectedSubCategories = ref([]);
@@ -16,26 +17,75 @@ const selectedSubCategories = ref([]);
 // Fetch all products
 const articles = ref([]);
 
+// Max Power range
+const maxPowerRange = computed(() => {
+  return articles.value.reduce((max, product) => {
+    const productMaxPower =
+      product.powerRange.unit === "kVA"
+        ? product.powerRange.to * 1000
+        : product.powerRange.to;
+    return Math.max(max, productMaxPower);
+  }, 0);
+});
+
+// Min Power range
+const minPowerRange = computed(() => {
+  return articles.value.reduce((min, product) => {
+    const productMinPower =
+      product.powerRange.unit === "kVA"
+        ? product.powerRange.from * 1000
+        : product.powerRange.from;
+    return Math.min(min, productMinPower);
+  }, Infinity);
+});
+
 onMounted(async () => {
   // Fetch articles on component mount.
   articles.value = await queryContent("products").find();
   // Set the default value of selectedMaxPower to maxPowerRange
   selectedMaxPower.value = maxPowerRange.value;
+  selectedMinPower.value = minPowerRange.value;
 
   console.log(articles.value);
+});
+
+// Watch for changes in articles and update the computed properties
+watch(articles, () => {
+  selectedMaxPower.value = maxPowerRange.value;
+  selectedMinPower.value = minPowerRange.value;
+});
+
+// Watch for changes in selectedMinPower and update selectedMaxPower accordingly
+watch(selectedMinPower, () => {
+  selectedMaxPower.value = Math.max(
+    selectedMaxPower.value,
+    selectedMinPower.value
+  );
+});
+
+// Watch for changes in selectedMaxPower and update selectedMinPower accordingly
+watch(selectedMaxPower, () => {
+  selectedMinPower.value = Math.min(
+    selectedMinPower.value,
+    selectedMaxPower.value
+  );
 });
 
 // Filtered products
 const filteredProducts = computed(() => {
   return articles.value.filter((product) => {
     // Convert power range to a common unit (e.g., VA)
+    let productMinPower = product.powerRange.from;
     let productMaxPower = product.powerRange.to;
     if (product.powerRange.unit === "kVA") {
+      productMinPower *= 1000;
       productMaxPower *= 1000;
     }
 
-    // Check if product's max power is less than or equal to the selected max power
-    const withinPowerRange = productMaxPower <= selectedMaxPower.value;
+    // Check if product's power range falls within the selected range
+    const withinPowerRange =
+      productMinPower >= selectedMinPower.value &&
+      productMaxPower <= selectedMaxPower.value;
 
     const inSelectedCategory =
       selectedCategories.value.length === 0 ||
@@ -47,17 +97,6 @@ const filteredProducts = computed(() => {
 
     return withinPowerRange && inSelectedCategory && inSelectedSubCategory;
   });
-});
-
-// Max Power range
-const maxPowerRange = computed(() => {
-  return articles.value.reduce((max, product) => {
-    const productMaxPower =
-      product.powerRange.unit === "kVA"
-        ? product.powerRange.to * 1000
-        : product.powerRange.to;
-    return Math.max(max, productMaxPower);
-  }, 0);
 });
 
 // Categories
@@ -82,7 +121,6 @@ useHead({
   ],
 });
 </script>
-
 <template>
   <main class="">
     <article class="l-container">
@@ -108,10 +146,20 @@ useHead({
 
           <h3 class="text-h6 font-bold mb-4">Power Range</h3>
           <label class="block mb-6">
+            <span class="block">Min Power (VA):</span>
+            <input
+              type="range"
+              :min="minPowerRange"
+              :max="maxPowerRange"
+              v-model="selectedMinPower"
+            />
+            <span class="block">{{ selectedMinPower }} VA</span>
+          </label>
+          <label class="block mb-6">
             <span class="block">Max Power (VA):</span>
             <input
               type="range"
-              min="0"
+              :min="selectedMinPower"
               :max="maxPowerRange"
               v-model="selectedMaxPower"
             />
