@@ -8,6 +8,7 @@ definePageMeta({
 });
 
 // Filter state
+const showProductList = ref(false);
 const selectedMinPower = ref(0);
 const selectedMaxPower = ref(0);
 const selectedCategories = ref([]);
@@ -79,54 +80,37 @@ onMounted(async () => {
   // Set the default value of selectedMinPower and selectedMaxPower to the query values or minPowerRange and maxPowerRange
   selectedMinPower.value = parseInt(query.minPower) || minPowerRange;
   selectedMaxPower.value = parseInt(query.maxPower) || maxPowerRange;
+
+  showProductList.value = true; // Show the product list after fetching articles
 });
 
-// // Watch for changes in selectedMinPower and update query parameter with debounce
+
+// // Watch for changes in selectedCategories and update query parameter accordingly
 // watch(
-//   selectedMinPower,
+//   selectedCategories,
 //   debounce((newVal) => {
 //     router.push({
 //       path: route.path,
-//       query: { ...query, minPower: newVal },
+//       query: { ...query, categories: newVal },
 //     });
-//   }, 600),
+//   }, 0),
 // );
 
-// // Watch for changes in selectedMaxPower and update query parameter with debounce
+// // Watch for changes in selectedSubCategories and update query parameter accordingly
 // watch(
-//   selectedMaxPower,
+//   selectedSubCategories,
 //   debounce((newVal) => {
 //     router.push({
 //       path: route.path,
-//       query: { ...query, maxPower: newVal },
+//       query: { ...query, subCategories: newVal },
 //     });
-//   }, 600),
+//   }, 0),
 // );
-
-// Watch for changes in selectedCategories and update query parameter accordingly
-watch(
-  selectedCategories,
-  debounce((newVal) => {
-    router.push({
-      path: route.path,
-      query: { ...query, categories: newVal },
-    });
-  }, 500),
-);
-
-// Watch for changes in selectedSubCategories and update query parameter accordingly
-watch(
-  selectedSubCategories,
-  debounce((newVal) => {
-    router.push({
-      path: route.path,
-      query: { ...query, subCategories: newVal },
-    });
-  }, 500),
-);
 
 // Filtered products
 const filteredProducts = computed(() => {
+  showProductList.value = false; // Hide the product list during filtering
+
   return articles.value.filter((product) => {
     // Convert power range to a common unit (e.g., VA)
     let productMinPower = product.powerRange.from;
@@ -149,8 +133,23 @@ const filteredProducts = computed(() => {
       selectedSubCategories.value.length === 0 ||
       selectedSubCategories.value.includes(product.subCategory);
 
+    showProductList.value = true; // Show the product list after filtering
+
     return withinPowerRange && inSelectedCategory && inSelectedSubCategory;
   });
+});
+
+// Total number of products
+const totalProducts = computed(() => articles.value.length);
+
+// Calculate time taken to filter and show results
+let filteringStartTime = performance.now();
+let filteringEndTime = performance.now();
+watchEffect(() => {
+  filteringStartTime = performance.now();
+  // Force reactivity to calculate the computed properties
+  filteredProducts.value;
+  filteringEndTime = performance.now();
 });
 
 // Categories
@@ -179,8 +178,8 @@ const subCategories = computed(() => {
           class="md:col-span-10 bg-b-blue-500 text-white"
           style="padding: var(--space-xs)"
         >
-          <h1 class="text-h1 font-medium leading-tight tracking-wide">
-            Products
+          <h1 class="font-medium leading-tight tracking-wide">
+            <span class="text-h1 block">Products</span>           
           </h1>
         </div>
       </header>
@@ -188,8 +187,17 @@ const subCategories = computed(() => {
         class="grid grid-cols-1 l-grid-line l-grid-line--t lg:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
         <aside class="lg:col-span-2 bg-white p-4">
+                  
           <h2 class="text-h5 font-bold mb-4">Filters</h2>
-
+          <p class="mb-4 block">
+            <span class="text-h6" v-if="showProductList && filteredProducts.length > 0">
+             Showing {{ filteredProducts.length }} out of {{ totalProducts }} products
+            </span>
+            <span class="text-h6" v-else-if="showProductList">No products found</span>
+            <!-- <span class="text-h6" v-if="showProductList &&  filteringStartTime && filteringEndTime">
+              in {{ (filteringEndTime - filteringStartTime).toFixed(2) }}ms
+            </span> -->
+          </p>
           <h3 class="text-h6 font-bold mb-4">Power Range</h3>
           <label class="block mb-6">
     <span class="block">Min Power (VA):</span>
