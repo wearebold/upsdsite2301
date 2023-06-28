@@ -1,6 +1,6 @@
 <!-- ./pages/products/index.vue -->
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch } from "vue";
 
 // Meta data
 definePageMeta({
@@ -48,7 +48,7 @@ if (query.subCategories) {
 function debounce(func, delay) {
   let timeoutId;
 
-  return function(...args) {
+  return function (...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       func.apply(this, args);
@@ -58,12 +58,12 @@ function debounce(func, delay) {
 
 onMounted(async () => {
   // Fetch articles on component mount.
-  articles.value = await queryContent('products').find();
+  articles.value = await queryContent("products").find();
 
   // Calculate initial power ranges
   minPowerRange = articles.value.reduce((min, product) => {
     const productMinPower =
-      product.powerRange.unit === 'kVA'
+      product.powerRange.unit === "kVA"
         ? product.powerRange.from * 1000
         : product.powerRange.from;
     return Math.min(min, productMinPower);
@@ -71,7 +71,7 @@ onMounted(async () => {
 
   maxPowerRange = articles.value.reduce((max, product) => {
     const productMaxPower =
-      product.powerRange.unit === 'kVA'
+      product.powerRange.unit === "kVA"
         ? product.powerRange.to * 1000
         : product.powerRange.to;
     return Math.max(max, productMaxPower);
@@ -83,7 +83,6 @@ onMounted(async () => {
 
   showProductList.value = true; // Show the product list after fetching articles
 });
-
 
 // // Watch for changes in selectedCategories and update query parameter accordingly
 // watch(
@@ -115,7 +114,7 @@ const filteredProducts = computed(() => {
     // Convert power range to a common unit (e.g., VA)
     let productMinPower = product.powerRange.from;
     let productMaxPower = product.powerRange.to;
-    if (product.powerRange.unit === 'kVA') {
+    if (product.powerRange.unit === "kVA") {
       productMinPower *= 1000;
       productMaxPower *= 1000;
     }
@@ -161,7 +160,7 @@ const categories = computed(() => {
 // Subcategories
 const subCategories = computed(() => {
   const allSubCategories = articles.value.flatMap(
-    (article) => article.subCategory || [],
+    (article) => article.subCategory || []
   );
   return [...new Set(allSubCategories)];
 });
@@ -179,7 +178,7 @@ const subCategories = computed(() => {
           style="padding: var(--space-xs)"
         >
           <h1 class="font-medium leading-tight tracking-wide">
-            <span class="text-h1 block">Products</span>           
+            <span class="text-h1 block">Products</span>
           </h1>
         </div>
       </header>
@@ -187,40 +186,45 @@ const subCategories = computed(() => {
         class="grid grid-cols-1 l-grid-line l-grid-line--t lg:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
         <aside class="lg:col-span-2 bg-white p-4">
-                  
           <h2 class="text-h5 font-bold mb-4">Filters</h2>
           <p class="mb-4 block">
-            <span class="text-h6" v-if="showProductList && filteredProducts.length > 0">
-             Showing {{ filteredProducts.length }} out of {{ totalProducts }} products
+            <span
+              class="text-h6"
+              v-if="showProductList && filteredProducts.length > 0"
+            >
+              Showing {{ filteredProducts.length }} out of
+              {{ totalProducts }} products
             </span>
-            <span class="text-h6" v-else-if="showProductList">No products found</span>
+            <span class="text-h6" v-else-if="showProductList"
+              >No products found</span
+            >
             <!-- <span class="text-h6" v-if="showProductList &&  filteringStartTime && filteringEndTime">
               in {{ (filteringEndTime - filteringStartTime).toFixed(2) }}ms
             </span> -->
           </p>
           <h3 class="text-h6 font-bold mb-4">Power Range</h3>
           <label class="block mb-6">
-    <span class="block">Min Power (VA):</span>
-    <input
-      type="range"
-      :min="minPowerRange"
-      :max="maxPowerRange"
-      step="100"
-      v-model="selectedMinPower"
-    />
-    <span class="block">{{ selectedMinPower }} VA</span>
-  </label>
-  <label class="block mb-6">
-    <span class="block">Max Power (VA):</span>
-    <input
-      type="range"
-      :min="minPowerRange"
-      :max="maxPowerRange"
-      step="100"
-      v-model="selectedMaxPower"
-    />
-    <span class="block">{{ selectedMaxPower }} VA</span>
-  </label>
+            <span class="block">Min Power (VA):</span>
+            <input
+              type="range"
+              :min="minPowerRange"
+              :max="maxPowerRange"
+              step="100"
+              v-model="selectedMinPower"
+            />
+            <span class="block">{{ selectedMinPower }} VA</span>
+          </label>
+          <label class="block mb-6">
+            <span class="block">Max Power (VA):</span>
+            <input
+              type="range"
+              :min="minPowerRange"
+              :max="maxPowerRange"
+              step="100"
+              v-model="selectedMaxPower"
+            />
+            <span class="block">{{ selectedMaxPower }} VA</span>
+          </label>
 
           <h3 class="text-h6 font-bold mb-4">Categories</h3>
           <div class="mb-6">
@@ -293,8 +297,7 @@ const subCategories = computed(() => {
                 :to="article._path"
                 class="c-btn c-btn--primary px-6 py-4 mt-auto | a11y-link | w-fit self-end inline-flex justify-content-between gap-4 no-underline"
                 :aria-label="`View ${article.title}`"
-                >View Product <span aria-hidden="true">↗</span></NuxtLink
-              >
+                >View Product <span aria-hidden="true">↗</span></NuxtLink>
             </li>
           </ul>
           <div v-else class="p-6">Loading...</div>

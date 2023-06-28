@@ -38,6 +38,9 @@
               <li class="link">
                 <NuxtLink to="/case-studies">Case Studies</NuxtLink>
               </li>
+              <li class="link">
+                <NuxtLink to="/contact">Contact</NuxtLink>
+              </li>
             </ul>
           </nav>
         </div>
