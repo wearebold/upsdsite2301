@@ -1,6 +1,6 @@
 <!-- ./pages/products/index.vue -->
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from 'vue';
 
 // Meta data
 definePageMeta({
@@ -20,14 +20,37 @@ const articles = ref([]);
 let minPowerRange = 0;
 let maxPowerRange = 0;
 
+// Retrieve query parameters from the URL
+const route = useRoute();
+const router = useRouter();
+const query = route.query;
+
+// Set the selected filter values from query parameters
+if (query.minPower) {
+  selectedMinPower.value = parseInt(query.minPower);
+}
+if (query.maxPower) {
+  selectedMaxPower.value = parseInt(query.maxPower);
+}
+if (query.categories) {
+  selectedCategories.value = Array.isArray(query.categories)
+    ? query.categories
+    : [query.categories];
+}
+if (query.subCategories) {
+  selectedSubCategories.value = Array.isArray(query.subCategories)
+    ? query.subCategories
+    : [query.subCategories];
+}
+
 onMounted(async () => {
   // Fetch articles on component mount.
-  articles.value = await queryContent("products").find();
+  articles.value = await queryContent('products').find();
 
   // Calculate initial power ranges
   minPowerRange = articles.value.reduce((min, product) => {
     const productMinPower =
-      product.powerRange.unit === "kVA"
+      product.powerRange.unit === 'kVA'
         ? product.powerRange.from * 1000
         : product.powerRange.from;
     return Math.min(min, productMinPower);
@@ -35,15 +58,47 @@ onMounted(async () => {
 
   maxPowerRange = articles.value.reduce((max, product) => {
     const productMaxPower =
-      product.powerRange.unit === "kVA"
+      product.powerRange.unit === 'kVA'
         ? product.powerRange.to * 1000
         : product.powerRange.to;
     return Math.max(max, productMaxPower);
   }, 0);
 
   // Set the default value of selectedMinPower to minPowerRange
-  selectedMinPower.value = minPowerRange;
-  selectedMaxPower.value = maxPowerRange;
+  selectedMinPower.value = selectedMinPower.value || minPowerRange;
+  selectedMaxPower.value = selectedMaxPower.value || maxPowerRange;
+});
+
+// Watch for changes in selectedMinPower and update query parameter accordingly
+watch(selectedMinPower, (newVal) => {
+  router.push({
+    path: route.path,
+    query: { ...query, minPower: newVal },
+  });
+});
+
+// Watch for changes in selectedMaxPower and update query parameter accordingly
+watch(selectedMaxPower, (newVal) => {
+  router.push({
+    path: route.path,
+    query: { ...query, maxPower: newVal },
+  });
+});
+
+// Watch for changes in selectedCategories and update query parameter accordingly
+watch(selectedCategories, (newVal) => {
+  router.push({
+    path: route.path,
+    query: { ...query, categories: newVal },
+  });
+});
+
+// Watch for changes in selectedSubCategories and update query parameter accordingly
+watch(selectedSubCategories, (newVal) => {
+  router.push({
+    path: route.path,
+    query: { ...query, subCategories: newVal },
+  });
 });
 
 // Filtered products
@@ -52,7 +107,7 @@ const filteredProducts = computed(() => {
     // Convert power range to a common unit (e.g., VA)
     let productMinPower = product.powerRange.from;
     let productMaxPower = product.powerRange.to;
-    if (product.powerRange.unit === "kVA") {
+    if (product.powerRange.unit === 'kVA') {
       productMinPower *= 1000;
       productMaxPower *= 1000;
     }
@@ -87,34 +142,6 @@ const subCategories = computed(() => {
   );
   return [...new Set(allSubCategories)];
 });
-
-// Set meta for page
-useHead({
-  title: "All products",
-  meta: [
-    { name: "description", content: "Here's a list of all my great products" },
-  ],
-});
-
-// Watch for changes in selectedMinPower and update selectedMaxPower accordingly
-watch(
-  selectedMinPower,
-  (newVal) => {
-    const newMaxPower = Math.max(newVal + 100, selectedMaxPower.value);
-    selectedMaxPower.value = Math.min(newMaxPower, maxPowerRange);
-  },
-  { immediate: true }
-);
-
-// Watch for changes in selectedMaxPower and update selectedMinPower accordingly
-watch(
-  selectedMaxPower,
-  (newVal) => {
-    const newMinPower = Math.min(newVal - 100, selectedMinPower.value);
-    selectedMinPower.value = Math.max(newMinPower, minPowerRange);
-  },
-  { immediate: true }
-);
 </script>
 
 <template>
@@ -194,7 +221,7 @@ watch(
         <div class="lg:col-span-10 bg-white">
           <ul
             v-if="filteredProducts"
-            class="list-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 | bg-gray-100 gap-x-px"
+            class="list-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 | bg-gray-100 gap-px"
           >
             <li
               v-for="article in filteredProducts"
