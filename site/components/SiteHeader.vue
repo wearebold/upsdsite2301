@@ -36,7 +36,7 @@
                 >
               </li>
               <li class="link">
-                <NuxtLink to="/blog">Case Studies</NuxtLink>
+                <NuxtLink to="/case-studies">Case Studies</NuxtLink>
               </li>
             </ul>
           </nav>
