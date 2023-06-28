@@ -1,7 +1,6 @@
 <!-- ./pages/products/index.vue -->
-
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 // Meta data
 definePageMeta({
@@ -17,58 +16,34 @@ const selectedSubCategories = ref([]);
 // Fetch all products
 const articles = ref([]);
 
-// Max Power range
-const maxPowerRange = computed(() => {
-  return articles.value.reduce((max, product) => {
-    const productMaxPower =
-      product.powerRange.unit === "kVA"
-        ? product.powerRange.to * 1000
-        : product.powerRange.to;
-    return Math.max(max, productMaxPower);
-  }, 0);
-});
+// Initialize min and max power ranges
+let minPowerRange = 0;
+let maxPowerRange = 0;
 
-// Min Power range
-const minPowerRange = computed(() => {
-  return articles.value.reduce((min, product) => {
+onMounted(async () => {
+  // Fetch articles on component mount.
+  articles.value = await queryContent("products").find();
+
+  // Calculate initial power ranges
+  minPowerRange = articles.value.reduce((min, product) => {
     const productMinPower =
       product.powerRange.unit === "kVA"
         ? product.powerRange.from * 1000
         : product.powerRange.from;
     return Math.min(min, productMinPower);
   }, Infinity);
-});
 
-onMounted(async () => {
-  // Fetch articles on component mount.
-  articles.value = await queryContent("products").find();
-  // Set the default value of selectedMaxPower to maxPowerRange
-  selectedMaxPower.value = maxPowerRange.value;
-  selectedMinPower.value = minPowerRange.value;
+  maxPowerRange = articles.value.reduce((max, product) => {
+    const productMaxPower =
+      product.powerRange.unit === "kVA"
+        ? product.powerRange.to * 1000
+        : product.powerRange.to;
+    return Math.max(max, productMaxPower);
+  }, 0);
 
-  console.log(articles.value);
-});
-
-// Watch for changes in articles and update the computed properties
-watch(articles, () => {
-  selectedMaxPower.value = maxPowerRange.value;
-  selectedMinPower.value = minPowerRange.value;
-});
-
-// Watch for changes in selectedMinPower and update selectedMaxPower accordingly
-watch(selectedMinPower, () => {
-  selectedMaxPower.value = Math.max(
-    selectedMaxPower.value,
-    selectedMinPower.value
-  );
-});
-
-// Watch for changes in selectedMaxPower and update selectedMinPower accordingly
-watch(selectedMaxPower, () => {
-  selectedMinPower.value = Math.min(
-    selectedMinPower.value,
-    selectedMaxPower.value
-  );
+  // Set the default value of selectedMinPower to minPowerRange
+  selectedMinPower.value = minPowerRange;
+  selectedMaxPower.value = maxPowerRange;
 });
 
 // Filtered products
@@ -113,14 +88,35 @@ const subCategories = computed(() => {
   return [...new Set(allSubCategories)];
 });
 
-// set meta for page
+// Set meta for page
 useHead({
   title: "All products",
   meta: [
     { name: "description", content: "Here's a list of all my great products" },
   ],
 });
+
+// Watch for changes in selectedMinPower and update selectedMaxPower accordingly
+watch(
+  selectedMinPower,
+  (newVal) => {
+    const newMaxPower = Math.max(newVal + 100, selectedMaxPower.value);
+    selectedMaxPower.value = Math.min(newMaxPower, maxPowerRange);
+  },
+  { immediate: true }
+);
+
+// Watch for changes in selectedMaxPower and update selectedMinPower accordingly
+watch(
+  selectedMaxPower,
+  (newVal) => {
+    const newMinPower = Math.min(newVal - 100, selectedMinPower.value);
+    selectedMinPower.value = Math.max(newMinPower, minPowerRange);
+  },
+  { immediate: true }
+);
 </script>
+
 <template>
   <main class="">
     <article class="l-container">
@@ -141,7 +137,6 @@ useHead({
         class="grid grid-cols-1 l-grid-line l-grid-line--t lg:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
         <aside class="lg:col-span-2 bg-white p-4">
-          <!-- <Category /> -->
           <h2 class="text-h5 font-bold mb-4">Filters</h2>
 
           <h3 class="text-h6 font-bold mb-4">Power Range</h3>
@@ -151,6 +146,7 @@ useHead({
               type="range"
               :min="minPowerRange"
               :max="maxPowerRange"
+              step="100"
               v-model="selectedMinPower"
             />
             <span class="block">{{ selectedMinPower }} VA</span>
@@ -161,6 +157,7 @@ useHead({
               type="range"
               :min="selectedMinPower"
               :max="maxPowerRange"
+              step="100"
               v-model="selectedMaxPower"
             />
             <span class="block">{{ selectedMaxPower }} VA</span>
@@ -227,10 +224,6 @@ useHead({
                 </dl>
               </div>
 
-              <!-- <ul class="article-tags">
-                    <li class="tag !py-0.5" v-for="(tag, n) in article.category" :key="n">{{ tag }}</li>
-                  </ul> -->
-
               <nuxt-img
                 :src="`/img/products/${article.images[0]}`"
                 sizes="sm:100vw md:50vw lg:400px"
@@ -245,6 +238,7 @@ useHead({
               >
             </li>
           </ul>
+          <div v-else class="p-6">Loading...</div>
         </div>
       </section>
     </article>
