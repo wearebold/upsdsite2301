@@ -1,0 +1,18 @@
+{
+    "title": "iPlug",
+    "slug": "iplug",
+    "description": "The writing experience for Nuxt 3",
+    "category": ["UPS"],
+    "subCategory": "VFD Type",
+    "brochure": "",
+    "userManual": "",
+    "images": [
+      "UPS_IPG.jpg"
+    ],
+    "powerRange": {
+      "from": 600,
+      "to": 800,
+      "unit": "VA"
+    },
+    "singlePhase": "1:1"
+  }

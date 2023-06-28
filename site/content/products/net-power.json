@@ -1,0 +1,18 @@
+{
+    "title": "Net Power",
+    "slug": "net-power",
+    "description": "The writing experience for Nuxt 3",
+    "category": ["UPS"],
+    "subCategory": "Line Interactive",
+    "brochure": "",
+    "userManual": "",
+    "images": [
+      "UPS_NPW.jpg"
+    ],
+    "powerRange": {
+      "from": 600,
+      "to": 2000,
+      "unit": "VA"
+    },
+    "singlePhase": "1:1"
+  }
