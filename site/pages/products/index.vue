@@ -43,6 +43,18 @@ if (query.subCategories) {
     : [query.subCategories];
 }
 
+// Custom debounce function
+function debounce(func, delay) {
+  let timeoutId;
+
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
 onMounted(async () => {
   // Fetch articles on component mount.
   articles.value = await queryContent('products').find();
@@ -64,42 +76,54 @@ onMounted(async () => {
     return Math.max(max, productMaxPower);
   }, 0);
 
-  // Set the default value of selectedMinPower to minPowerRange
-  selectedMinPower.value = selectedMinPower.value || minPowerRange;
-  selectedMaxPower.value = selectedMaxPower.value || maxPowerRange;
+  // Set the default value of selectedMinPower and selectedMaxPower to the query values or minPowerRange and maxPowerRange
+  selectedMinPower.value = parseInt(query.minPower) || minPowerRange;
+  selectedMaxPower.value = parseInt(query.maxPower) || maxPowerRange;
 });
 
-// Watch for changes in selectedMinPower and update query parameter accordingly
-watch(selectedMinPower, (newVal) => {
-  router.push({
-    path: route.path,
-    query: { ...query, minPower: newVal },
-  });
-});
+// // Watch for changes in selectedMinPower and update query parameter with debounce
+// watch(
+//   selectedMinPower,
+//   debounce((newVal) => {
+//     router.push({
+//       path: route.path,
+//       query: { ...query, minPower: newVal },
+//     });
+//   }, 600),
+// );
 
-// Watch for changes in selectedMaxPower and update query parameter accordingly
-watch(selectedMaxPower, (newVal) => {
-  router.push({
-    path: route.path,
-    query: { ...query, maxPower: newVal },
-  });
-});
+// // Watch for changes in selectedMaxPower and update query parameter with debounce
+// watch(
+//   selectedMaxPower,
+//   debounce((newVal) => {
+//     router.push({
+//       path: route.path,
+//       query: { ...query, maxPower: newVal },
+//     });
+//   }, 600),
+// );
 
 // Watch for changes in selectedCategories and update query parameter accordingly
-watch(selectedCategories, (newVal) => {
-  router.push({
-    path: route.path,
-    query: { ...query, categories: newVal },
-  });
-});
+watch(
+  selectedCategories,
+  debounce((newVal) => {
+    router.push({
+      path: route.path,
+      query: { ...query, categories: newVal },
+    });
+  }, 500),
+);
 
 // Watch for changes in selectedSubCategories and update query parameter accordingly
-watch(selectedSubCategories, (newVal) => {
-  router.push({
-    path: route.path,
-    query: { ...query, subCategories: newVal },
-  });
-});
+watch(
+  selectedSubCategories,
+  debounce((newVal) => {
+    router.push({
+      path: route.path,
+      query: { ...query, subCategories: newVal },
+    });
+  }, 500),
+);
 
 // Filtered products
 const filteredProducts = computed(() => {
@@ -138,7 +162,7 @@ const categories = computed(() => {
 // Subcategories
 const subCategories = computed(() => {
   const allSubCategories = articles.value.flatMap(
-    (article) => article.subCategory || []
+    (article) => article.subCategory || [],
   );
   return [...new Set(allSubCategories)];
 });
@@ -168,27 +192,27 @@ const subCategories = computed(() => {
 
           <h3 class="text-h6 font-bold mb-4">Power Range</h3>
           <label class="block mb-6">
-            <span class="block">Min Power (VA):</span>
-            <input
-              type="range"
-              :min="minPowerRange"
-              :max="maxPowerRange"
-              step="100"
-              v-model="selectedMinPower"
-            />
-            <span class="block">{{ selectedMinPower }} VA</span>
-          </label>
-          <label class="block mb-6">
-            <span class="block">Max Power (VA):</span>
-            <input
-              type="range"
-              :min="selectedMinPower"
-              :max="maxPowerRange"
-              step="100"
-              v-model="selectedMaxPower"
-            />
-            <span class="block">{{ selectedMaxPower }} VA</span>
-          </label>
+    <span class="block">Min Power (VA):</span>
+    <input
+      type="range"
+      :min="minPowerRange"
+      :max="maxPowerRange"
+      step="100"
+      v-model="selectedMinPower"
+    />
+    <span class="block">{{ selectedMinPower }} VA</span>
+  </label>
+  <label class="block mb-6">
+    <span class="block">Max Power (VA):</span>
+    <input
+      type="range"
+      :min="minPowerRange"
+      :max="maxPowerRange"
+      step="100"
+      v-model="selectedMaxPower"
+    />
+    <span class="block">{{ selectedMaxPower }} VA</span>
+  </label>
 
           <h3 class="text-h6 font-bold mb-4">Categories</h3>
           <div class="mb-6">
