@@ -1,5 +1,5 @@
 <template>
-  <footer class="site-footer">
+  <footer class="site-footer overflow-y-hidden">
     <div class="l-container">
       <div class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | relative bg-gray-100 gap-px py-px px-px">
         <div class="hidden md:flex md:col-span-2 bg-white p-4 relative">

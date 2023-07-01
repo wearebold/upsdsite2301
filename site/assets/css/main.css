@@ -78,26 +78,14 @@ body {
   @apply font-body;
 }
 
-#__nuxt > div {
-  overflow-x: hidden;
-  width: 100%;
-}
 
 a {
   text-decoration: underline;
 }
 
-main > *::before {
-  --line-width: 1px;
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(-1 * var(--line-width));
-  left: 0;
-  width: 100vw;
-  height: calc(100% + var(--line-width) * 2);
-  background: paint(borderLines);
-  pointer-events: none;
+main {
+  overflow-x: hidden;
+  margin-top: -5px;
 }
 
 .d-circles {
@@ -150,9 +138,6 @@ img {
   width: 100%;
 }
 
-main {
-  overflow: hidden;
-}
 
 .sr-only {
   position: absolute;
