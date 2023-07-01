@@ -18,7 +18,8 @@
             </div>
 
             <NuxtLink to="/" class="no-underline flex">
-              <nuxt-img
+              <nuxt-img 
+                format="svg"
                 src="/img/svg/ups-direct_logo-light.svg"
                 alt="UPS Direct Logo"
                 class="site-logo flex-shrink-0 w-full aspect-[2/1]"

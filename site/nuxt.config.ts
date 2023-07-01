@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       crawlLinks: true
     }     
  }, 
+ build: {
+  transpile: ['gsap'],
+ },
   modules: ['@nuxt/image','@nuxt/content','@nuxtjs/tailwindcss'],
   plugins: [
     // '~/plugins/borderLines.client.js'

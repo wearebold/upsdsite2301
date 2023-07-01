@@ -97,6 +97,9 @@ useHead({
                   :key="n"
                 >
                   <nuxt-img
+                    format="webp"
+                    width="600"
+                    height="600"
                     :src="`/img/products/${img}`"
                     sizes="sm:100vw md:50vw lg:600px"
                     :alt="data.article.title"

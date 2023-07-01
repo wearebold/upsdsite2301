@@ -33,6 +33,10 @@
           <div class="md:col-span-6 bg-b-red-500 p-4" style="padding: var(--space-l-xl);">
             <div class="prose flex flex-col justify-center items-center h-full">
               <nuxt-img
+               loading="lazy"
+                format="svg"
+                width="460"
+                height="230"
                 src="/img/svg/reillo_logo-dark.svg"
                 style="max-width: 460px"
                 alt="Reillo Logo"

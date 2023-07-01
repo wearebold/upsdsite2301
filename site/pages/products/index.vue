@@ -278,8 +278,12 @@ const subCategories = computed(() => {
               </div>
 
               <nuxt-img
+                format="webp"
                 :src="`/img/products/${article.images[0]}`"
                 sizes="sm:100vw md:50vw lg:400px"
+                width="400"
+                height="400"
+                loading="lazy"
                 :alt="article.title"
                 class="max-w-xs max-h-96 mx-auto pt-6 pb-10 object-contain"
               />
