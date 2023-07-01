@@ -287,14 +287,21 @@ main {
 /* BUTTONS */
 
 .c-btn--primary {
+  @apply font-header;
   background-color: black;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 0.85rem;
+  letter-spacing: 0.125em;
+  font-size: 0.75rem;  
 }
 
 .c-btn--primary:hover,
 .c-btn--primary:focus {
   @apply bg-b-blue-500;
+}
+
+.c-pill {
+  @apply font-header;
+  letter-spacing: 0.125em;
+  font-size: 0.75rem;  
 }
