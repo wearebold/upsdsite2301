@@ -4,10 +4,10 @@
   <header class="site-header bg-white">
     <div class="l-container">
       <div
-        class="w-full grid grid-cols-2 l-grid-line l-grid-line--b md:grid-cols-12 | relative bg-gray-100 gap-px pb-px px-px"
+        class="w-full grid grid-cols-3 l-grid-line l-grid-line--b md:grid-cols-12 | relative bg-gray-100 gap-px pb-px px-px"
       >
         <div
-          class="md:flex md:col-span-2 bg-white p-4 justify-center items-center relative"
+          class="col-span-1 md:flex md:col-span-2 bg-white p-4 justify-center items-center relative"
         >
           <div class="d-circles">
             <span class="d-circle d-circle__1"></span>
@@ -19,14 +19,13 @@
           <NuxtLink to="/" class="no-underline flex">
             <nuxt-img
               src="/img/svg/ups-direct_logo-light.svg"
-              style="max-width: 160px"
               alt="UPS Direct Logo"
-              class="flex-shrink-0 w-full aspect-[2/1]"
+              class="site-logo flex-shrink-0 w-full aspect-[2/1]"
             />
           </NuxtLink>
         </div>
 
-        <div class="md:col-span-10 bg-white p-4 relative flex justify-center">
+        <div class="col-span-2 md:col-span-10 bg-white p-4 relative flex justify-center">
           <div class="d-circles">
             <span class="d-circle d-circle__1"></span>
             <span class="d-circle d-circle__2"></span>
@@ -36,9 +35,9 @@
           <nav
             ref="siteNav"
             id="a11y-nav-primary"
-            class="c-nav c-nav--primary | flex justify-center items-center h-full"
+            class="c-nav c-nav--primary | flex justify-center items-center h-full w-full"
           >
-            <ul class="links flex flex-col gap-6 | md:flex-row">
+            <ul class="links flex flex-col gap-6 w-full | md:flex-row md:justify-evenly">
               <li class="link">
                 <NuxtLink to="/about"  @click="clearState">About</NuxtLink>
               </li>
@@ -195,17 +194,18 @@ onUnmounted(() => {
 }
 
 .site-header > .l-container {
-  @apply flex items-center justify-between m-auto;
+  @apply flex items-center justify-between;
 }
 
 .site-logo {
-  @apply font-black text-lg;
+  max-width: clamp(100px, 50%, 200px);
+  margin: 0 auto;
 }
 
 // - BUTTON MENU
 .c-btn-menu {
   z-index: 20;
-
+  @apply font-header;
   .s-menu-open & {
     color: white;
   }
@@ -213,6 +213,10 @@ onUnmounted(() => {
 
 // - NAV
 .c-nav--primary {
+
+  a {
+    @apply font-header;
+  }
   // until md
   @media (max-width: 47.99em) {
     opacity: 0;
@@ -234,7 +238,6 @@ onUnmounted(() => {
     padding-left: 1.25rem;
 
     a {
-      @apply font-header;
       font-size: clamp(1.5rem, 1.136rem + 1.82vw, 2.5rem);
       font-weight: 500;
       color: white;
