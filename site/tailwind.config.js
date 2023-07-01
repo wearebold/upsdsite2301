@@ -21,8 +21,8 @@
      // },
      theme: {
         fontFamily: {
-            'header': ['manrope', ...defaultTheme.fontFamily.sans],
-            'sans': ['Satoshi', ...defaultTheme.fontFamily.sans],
+            'header': ['Space Grotesk', ...defaultTheme.fontFamily.sans],
+            'body': ['Satoshi', ...defaultTheme.fontFamily.sans],
           },         
          extend: {
             screens: {

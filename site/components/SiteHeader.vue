@@ -1,12 +1,19 @@
 <!-- ./components/SiteHeader.vue -->
 
 <template>
-  <header class="site-header bg-white overflow-hidden">
+  <header class="site-header bg-white">
     <div class="l-container">
-      <div class="w-full grid grid-cols-1 l-grid-line l-grid-line--t l-grid-line--b md:grid-cols-12 | relative bg-gray-100 gap-px py-px px-px"> 
+      <div class="w-full grid grid-cols-1 l-grid-line l-grid-line--b md:grid-cols-12 | relative bg-gray-100 gap-px pb-px px-px"> 
         <div
-          class="md:flex md:col-span-2 bg-white p-4 justify-center items-center"
+          class="md:flex md:col-span-2 bg-white p-4 justify-center items-center relative"
         >
+      <div class="d-circles">
+          <span class="d-circle d-circle__1"></span>
+          <span class="d-circle d-circle__2"></span>
+          <span class="d-circle d-circle__3" style="bottom: -5px;"></span>
+          <span class="d-circle d-circle__4" style="bottom: -5px;"></span>
+        </div>
+          
         <NuxtLink to="/" class="no-underline flex">          
           <nuxt-img
             src="/img/svg/ups-direct_logo-light.svg"
@@ -18,7 +25,12 @@
         </div>
         
         
-        <div class="md:col-span-10 bg-white p-4">
+        <div class="md:col-span-10 bg-white p-4 relative">
+          <div class="d-circles">
+          <span class="d-circle d-circle__1"></span>
+          <span class="d-circle d-circle__2"></span>
+          <span class="d-circle d-circle__4" style="bottom: -5px;"></span>
+        </div>
           <nav class="site-nav flex justify-center items-center h-full">
             <ul class="links inline-flex gap-6">
               <li class="link">

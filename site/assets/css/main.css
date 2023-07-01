@@ -1,6 +1,6 @@
 /* ./assets/css/main.css */
 
-@import url('https://api.fontshare.com/v2/css?f[]=manrope@1,800,500,100,700,400,300,200,900&f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import url("https://api.fontshare.com/v2/css?f[]=space-grotesk@1,800,500,100,700,400,300,200,900&f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,65 +8,64 @@
 
 :root {
   /* Space 3xs: 4px → 12px */
-  --space-3xs: clamp(0.25rem, calc(0.15rem + 0.50vw), 0.75rem);
+  --space-3xs: clamp(0.25rem, calc(0.15rem + 0.5vw), 0.75rem);
 
   /* Space 2xs: 8px → 24px */
-  --space-2xs: clamp(0.50rem, calc(0.30rem + 1.00vw), 1.50rem);
+  --space-2xs: clamp(0.5rem, calc(0.3rem + 1vw), 1.5rem);
 
   /* Space xs: 12px → 36px */
-  --space-xs: clamp(0.75rem, calc(0.45rem + 1.50vw), 2.25rem);
+  --space-xs: clamp(0.75rem, calc(0.45rem + 1.5vw), 2.25rem);
 
   /* Space s: 16px → 48px */
-  --space-s: clamp(1.00rem, calc(0.60rem + 2.00vw), 3.00rem);
+  --space-s: clamp(1rem, calc(0.6rem + 2vw), 3rem);
 
   /* Space m: 24px → 72px */
-  --space-m: clamp(1.50rem, calc(0.90rem + 3.00vw), 4.50rem);
+  --space-m: clamp(1.5rem, calc(0.9rem + 3vw), 4.5rem);
 
   /* Space l: 32px → 96px */
-  --space-l: clamp(2.00rem, calc(1.20rem + 4.00vw), 6.00rem);
+  --space-l: clamp(2rem, calc(1.2rem + 4vw), 6rem);
 
   /* Space xl: 48px → 144px */
-  --space-xl: clamp(3.00rem, calc(1.80rem + 6.00vw), 9.00rem);
+  --space-xl: clamp(3rem, calc(1.8rem + 6vw), 9rem);
 
   /* Space 2xl: 64px → 192px */
-  --space-2xl: clamp(4.00rem, calc(2.40rem + 8.00vw), 12.00rem);
+  --space-2xl: clamp(4rem, calc(2.4rem + 8vw), 12rem);
 
   /* Space 3xl: 96px → 288px */
-  --space-3xl: clamp(6.00rem, calc(3.60rem + 12.00vw), 18.00rem);
+  --space-3xl: clamp(6rem, calc(3.6rem + 12vw), 18rem);
 
   /* One-up pairs */
   /* Space 3xs-2xs: 4px → 24px */
-  --space-3xs-2xs: clamp(0.25rem, calc(0.00rem + 1.25vw), 1.50rem);
+  --space-3xs-2xs: clamp(0.25rem, calc(0rem + 1.25vw), 1.5rem);
 
   /* Space 2xs-xs: 8px → 36px */
-  --space-2xs-xs: clamp(0.50rem, calc(0.15rem + 1.75vw), 2.25rem);
+  --space-2xs-xs: clamp(0.5rem, calc(0.15rem + 1.75vw), 2.25rem);
 
   /* Space xs-s: 12px → 48px */
-  --space-xs-s: clamp(0.75rem, calc(0.30rem + 2.25vw), 3.00rem);
+  --space-xs-s: clamp(0.75rem, calc(0.3rem + 2.25vw), 3rem);
 
   /* Space s-m: 16px → 72px */
-  --space-s-m: clamp(1.00rem, calc(0.30rem + 3.50vw), 4.50rem);
+  --space-s-m: clamp(1rem, calc(0.3rem + 3.5vw), 4.5rem);
 
   /* Space m-l: 24px → 96px */
-  --space-m-l: clamp(1.50rem, calc(0.60rem + 4.50vw), 6.00rem);
+  --space-m-l: clamp(1.5rem, calc(0.6rem + 4.5vw), 6rem);
 
   /* Space l-xl: 32px → 144px */
-  --space-l-xl: clamp(2.00rem, calc(0.60rem + 7.00vw), 9.00rem);
+  --space-l-xl: clamp(2rem, calc(0.6rem + 7vw), 9rem);
 
   /* Space xl-2xl: 48px → 192px */
-  --space-xl-2xl: clamp(3.00rem, calc(1.20rem + 9.00vw), 12.00rem);
+  --space-xl-2xl: clamp(3rem, calc(1.2rem + 9vw), 12rem);
 
   /* Space 2xl-3xl: 64px → 288px */
-  --space-2xl-3xl: clamp(4.00rem, calc(1.20rem + 14.00vw), 18.00rem);
+  --space-2xl-3xl: clamp(4rem, calc(1.2rem + 14vw), 18rem);
 
   /* Custom pairs */
   /* Space s-l: 16px → 96px */
-  --space-s-l: clamp(1.00rem, calc(0.00rem + 5.00vw), 6.00rem);
+  --space-s-l: clamp(1rem, calc(0rem + 5vw), 6rem);
 }
 
 * {
   @apply scroll-m-20;
-
 }
 
 html {
@@ -74,14 +73,64 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+  width: 100%;
   @apply text-slate-700;
+  @apply font-body;
 }
-
 
 a {
   text-decoration: underline;
 }
 
+main > *::before {
+  --line-width: 1px;
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(-1 * var(--line-width));
+  left: 0;
+  width: 100vw;
+  height: calc(100% + var(--line-width) * 2);
+  background: paint(borderLines);
+  pointer-events: none;
+}
+
+.d-circles {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+}
+.d-circle {
+  width: 8px;
+  height: 8px;
+  background-color: hsl(220 14% 91% / 1);
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+
+.d-circle__1 {
+  top: -4px;
+  left: -4px;
+}
+.d-circle__2 {
+  top: -4px;
+  right: -4px;
+}
+.d-circle__3 {
+  bottom: -4px;
+  left: -4px;
+}
+.d-circle__4 {
+  bottom: -4px;
+  right: -4px;
+}
 
 h1,
 h2,
@@ -89,9 +138,9 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: 400 !important;
   @apply font-header;
 }
-
 
 img {
   width: 100%;
@@ -115,14 +164,13 @@ main {
 
 .a11y-link {
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
-    bottom: 0;    
+    bottom: 0;
   }
-
 }
 
 .icon {
@@ -136,7 +184,6 @@ main {
 .icon.stroke {
   @apply stroke-slate-500;
 }
-
 
 .cta {
   @apply p-1.5 px-2 bg-slate-50 border border-slate-200 font-semibold rounded-lg;
@@ -165,7 +212,7 @@ main {
 }
 
 .l-grid-line:before,
-.l-grid-line:after { 
+.l-grid-line:after {
   pointer-events: none;
   content: "";
   position: absolute;
@@ -174,12 +221,12 @@ main {
 }
 
 .l-grid-line--t:before,
-.l-grid-line--t:after { 
+.l-grid-line--t:after {
   top: 0;
 }
 
 .l-grid-line--b:before,
-.l-grid-line--b:after { 
+.l-grid-line--b:after {
   bottom: 0;
 }
 .l-grid-line:before {
@@ -188,8 +235,8 @@ main {
 }
 
 .l-grid-line:after {
-    border-bottom: 1px solid rgb(243 244 246 / var(--tw-bg-opacity));    
-    left: 100%;
+  border-bottom: 1px solid rgb(243 244 246 / var(--tw-bg-opacity));
+  left: 100%;
 }
 
 /* ARTICLES PAGES */
@@ -209,7 +256,7 @@ main {
   @apply p-12 bg-slate-50;
 }
 
-.page-heading>.wrapper {
+.page-heading > .wrapper {
   @apply max-w-3xl m-auto;
 }
 
@@ -229,15 +276,14 @@ main {
   @apply no-underline;
 }
 
-.article-item>*>.wrapper {
+.article-item > * > .wrapper {
   @apply flex items-start gap-4;
 }
 
 /* BUTTONS */
 
-
 .c-btn--primary {
-  background-color: black;    
+  background-color: black;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.04em;

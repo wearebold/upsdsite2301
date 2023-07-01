@@ -2,34 +2,30 @@
 <template>
   <main class="">
     <article class="l-container">
-      <header
-        class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
-      >
-        <div class="hidden md:flex md:col-span-2 bg-white p-4 justify-center items-center">
-          <!-- <nuxt-img src="/img/svg/ups-direct_logo-light.svg" style="max-width: 180px;" sizes="sm:100vw md:50vw lg:400px" alt="UPS Direct Logo" class="" /> -->
-        </div>
-        <div
-          class="md:col-span-10 bg-b-blue-500 text-white"
-          style="padding: var(--space-xs)"
-        >
-          <h1 class="font-medium leading-tight tracking-wide">
-            <span class="text-h1">Power Protection Solutions</span><br />
-            <span class="text-h3">Uninterrupted, Reliable, and Direct</span>
-          </h1>
-        </div>
-      </header>
+
+      <PageHeader headerText="Power Protection Solutions" subHeaderText="Uninterrupted, Reliable, and Direct"></PageHeader>
+
       <section
         class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
-        <div class="hidden md:block md:col-span-2 bg-white">
+        <div class="hidden md:block md:col-span-2 bg-white relative">
+          <div class="d-circles">
+            <span class="d-circle d-circle__3"></span>
+            <span class="d-circle d-circle__4"></span>
+          </div>
           <!-- <div class="aspect-[2/1] bg-b-red-500"></div>
-      <div class="aspect-[2/1] bg-b-yellow-500"></div>        
-      <div class="aspect-[2/1] bg-b-green-500"></div>                     -->
+    <div class="aspect-[2/1] bg-b-yellow-500"></div>        
+    <div class="aspect-[2/1] bg-b-green-500"></div>                     -->
         </div>
         <div
-          class="md:col-span-10 bg-white p-4"
+          class="md:col-span-10 bg-white p-4 relative"
           style="padding: var(--space-l-xl)"
         >
+          <div class="d-circles">
+            <span class="d-circle d-circle__3"></span>
+            <span class="d-circle d-circle__4"></span>
+          </div>
+
           <div class="prose max-w-prose mx-auto">
             <h2 class="text-h2">
               We specialise in UPS equipment for extreme conditions. Wherever
@@ -64,40 +60,40 @@
     <!-- 
 
 <div class="l-container">
-  <div
-    class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
-  >
-    <div class="md:col-span-8 bg-white p-4">1</div>
-    <div class="md:col-span-4 bg-white p-4">2</div>
-  </div>
+<div
+  class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
+>
+  <div class="md:col-span-8 bg-white p-4">1</div>
+  <div class="md:col-span-4 bg-white p-4">2</div>
+</div>
 </div>
 
 <div class="l-container">
-  <div
-    class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
-  >
-    <div class="md:col-span-4 bg-white p-4">1</div>
-    <div class="md:col-span-8 bg-white p-4">2</div>
-  </div>
+<div
+  class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
+>
+  <div class="md:col-span-4 bg-white p-4">1</div>
+  <div class="md:col-span-8 bg-white p-4">2</div>
+</div>
 </div>
 
 <div class="l-container">
-  <div
-    class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
-  >
-    <div class="md:col-span-6 bg-white p-4">1</div>
-    <div class="md:col-span-6 bg-white p-4">2</div>
-  </div>
+<div
+  class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
+>
+  <div class="md:col-span-6 bg-white p-4">1</div>
+  <div class="md:col-span-6 bg-white p-4">2</div>
+</div>
 </div>
 
 <div class="l-container">
-  <div
-    class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
-  >
-    <div class="md:col-span-4 bg-white p-4">1</div>
-    <div class="md:col-span-4 bg-white p-4">2</div>
-    <div class="md:col-span-4 bg-white p-4">3</div>
-  </div>
+<div
+  class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | bg-gray-100 gap-px pt-px px-px"
+>
+  <div class="md:col-span-4 bg-white p-4">1</div>
+  <div class="md:col-span-4 bg-white p-4">2</div>
+  <div class="md:col-span-4 bg-white p-4">3</div>
+</div>
 </div> -->
   </main>
 </template>

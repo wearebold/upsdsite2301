@@ -8,6 +8,10 @@ export default defineNuxtConfig({
     }     
  }, 
   modules: ['@nuxt/image','@nuxt/content','@nuxtjs/tailwindcss'],
+  plugins: [
+    // '~/plugins/borderLines.client.js'
+    // '~/plugins/paintworklet.client.js'
+  ],
   image: {
     provider: 'netlify'
   },
