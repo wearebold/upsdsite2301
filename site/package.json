@@ -17,6 +17,10 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18",
     "nuxt": "^3.6.0",
+    "sass": "^1.63.6",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "gsap": "^3.12.2"
   }
 }

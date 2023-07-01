@@ -175,6 +175,7 @@ const subCategories = computed(() => {
         class="grid grid-cols-1 l-grid-line l-grid-line--t lg:grid-cols-12 | relative bg-gray-100 gap-px pt-px px-px"
       >
         <aside class="lg:col-span-2 bg-white p-4">
+
           <h2 class="text-h5 font-bold mb-4">Filters</h2>
           <p class="mb-4 block">
             <span

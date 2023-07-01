@@ -1,24 +1,27 @@
 <template>
-    <footer class="site-footer">
-        <div class="wrapper">
-            <div class="footer-info">            
-                <span>Built by <a href="https://wearebold.co.uk"
-                        rel="noopener noreferrer">wearebold</a></span>
-            </div>
-            <ul class="footer-links">
-                <li class="link-item">
-                    <small>&copy; {{ new Date().getFullYear() }} UPS Direct</small>
-                </li>
-            </ul>
+  <footer class="site-footer">
+    <div class="l-container">
+      <div class="grid grid-cols-1 l-grid-line l-grid-line--t md:grid-cols-12 | relative bg-gray-100 gap-px py-px px-px">
+        <div class="hidden md:flex md:col-span-2 bg-white p-4 relative">
+          <div class="d-circles">
+            <span class="d-circle d-circle__1"></span>
+            <span class="d-circle d-circle__3"></span>
+          </div>
         </div>
-    </footer>
+        <div class="md:col-span-10 bg-white relative" style="padding: var(--space-xs)">
+          <div class="d-circles">
+            <span class="d-circle d-circle__1"></span>
+            <span class="d-circle d-circle__2"></span>
+            <span class="d-circle d-circle__3"></span>
+            <span class="d-circle d-circle__4"></span>
+          </div>
+          <ul class="footer-links flex justify-end">
+            <li class="link-item">
+              <small>&copy; {{ new Date().getFullYear() }} UPS Direct</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </template>
-<style scoped>
-.site-footer {
-    @apply bg-white px-4 py-12 border-t border-slate-100;
-}
-
-.site-footer>.wrapper {
-    @apply flex flex-wrap gap-16 justify-between m-auto max-w-6xl;
-}
-</style>
